@@ -1,0 +1,16 @@
+.star {
+  position: absolute;
+  animation: twinkle 2s infinite ease-in-out alternate;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
