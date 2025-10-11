@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import "../assets/spin.css";
 import "../assets/stars.css";
-import { Container } from "./container";
+import { Container } from "@components/container";
+import { Terminal } from "@components/terminal";
 
 export function Hero() {
   const randomNames = ["Visitor", "Stranger", "Recruiter", "Developer"];
@@ -15,7 +16,7 @@ export function Hero() {
 
   return (
     <div className="relative h-screen w-full flex items-center overflow-hidden">
-      <div className="stars-container h-80 absolute inset-0 z-0">
+      <div className="stars-container max-h-80 absolute inset-0 z-0">
         {[...Array(400)].map((_, i) => (
           <div
             key={i}
@@ -43,14 +44,14 @@ export function Hero() {
 
       <Container>
         <div className="col-span-ful z-20 max-w-4xl">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-mono text-left leading-tight text-gray-900">
+          <h1 className="text-5xl font-thin md:text-6xl lg:text-7xl font-mono text-left leading-tight text-gray-900">
             Hey there, <br />
             <span className="font-bold text-main-400">
               {displayName || "friend"}
             </span>
             .
           </h1>
-          <p className="text-xl md:text-2xl mt-8 text-gray-700 leading-relaxed font-light">
+          <p className="text-xl md:text-xl max-w-3xl mt-8 text-gray-700 leading-relaxed font-light">
             I'm <span className="font-bold text-main-400">Dani Olaeriu</span>, a
             software developer who turns ideas into elegant digital experiences.
             I specialize in{" "}
@@ -62,11 +63,13 @@ export function Hero() {
             <span className="font-bold text-main-400">
               4 years of professional experience
             </span>
-            , I build web applications that don't just work—they delight. Every
+            , I build web applications that don't just work, they delight. Every
             pixel, every interaction, every line of code is crafted with
             purpose.
           </p>
         </div>
+
+        <Terminal />
       </Container>
     </div>
   );
