@@ -83,7 +83,6 @@ export function Hero() {
         duration: 3,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut",
       });
 
       gsap.to(cubeRef.current, {
@@ -92,6 +91,7 @@ export function Hero() {
           start: "top top",
           end: "bottom top",
           scrub: 1,
+          toggleActions: "play none none reverse",
         },
         y: 100,
         scale: 0.9,
@@ -135,16 +135,7 @@ export function Hero() {
               .
             </span>
           </h1>
-          <p
-            ref={paragraph1Ref}
-            className="text-xl md:text-xl max-w-3xl mt-8 leading-relaxed font-light text-gray-200"
-          >
-            I'm <span className="font-bold text-cyan-400">Dani Olaeriu</span>, a
-            24 years old software developer who turns ideas into elegant digital
-            experiences. I specialize in{" "}
-            <span className="font-bold">frontend development</span> with the
-            backend skills to bring the full picture together.
-          </p>
+
           <div ref={terminalRef}>
             <Terminal>
               <div className="text-green-400">
@@ -176,11 +167,13 @@ export function Hero() {
           <Terminal>
             <div className="text-green-400">
               <div className="flex items-center gap-2 mb-2">
+                <span className="text-green-400">user@portfolio</span>
                 <span className="text-cyan-400">$</span>
                 <span>cd ../</span>
               </div>
 
               <div className="flex items-center gap-2 mb-2">
+                <span className="text-green-400">user@portfolio</span>
                 <span className="text-cyan-400">$</span>
                 <span>ls</span>
               </div>
@@ -189,9 +182,11 @@ export function Hero() {
               </div>
 
               <div className="flex items-center gap-2 mb-2">
+                <span className="text-green-400">user@portfolio</span>
                 <span className="text-cyan-400">$</span>
                 <span>cat README.md</span>
               </div>
+
               <div className="text-gray-300 ml-4 mt-3">
                 <div className="text-purple-400 font-bold mb-2"># About Me</div>
                 <div className="mb-2">
@@ -240,6 +235,7 @@ export function Hero() {
               </div>
 
               <div className="flex items-center gap-2 mt-4">
+                <span className="text-green-400">user@portfolio</span>
                 <span className="text-cyan-400">$</span>
                 <span className="animate-pulse">_</span>
               </div>

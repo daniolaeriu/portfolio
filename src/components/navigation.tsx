@@ -20,14 +20,19 @@ export function Navigation() {
   ];
 
   return (
-    <aside className="cursor-none fixed min-w-72 h-screen pt-10 bg-white/5 backdrop-blur-lg border-r border-main-200/10 p-6">
+    <aside className="cursor-none fixed md:min-w-72 w-full md:w-auto md:h-screen  md:pt-10 pt-4 bg-white/5 backdrop-blur-lg md:border-r border-b md:border-b-0 border-main-200/10 p-6 md:p-6 p-4 z-50">
       <nav>
-        <ul className="flex flex-col mt-4 gap-1">
+        <ul className="flex md:flex-col flex-row mt-4 md:mt-4 gap-1 md:gap-1  justify-center md:justify-start">
           {navigation.map((n, index) => {
             const isActive = location.pathname === n.href;
             return (
               <li key={index}>
-                <NavLink to={n.href} active={isActive} icon={n.icon}>
+                <NavLink
+                  className="p-4"
+                  to={n.href}
+                  active={isActive}
+                  icon={n.icon}
+                >
                   {n.label}
                 </NavLink>
               </li>

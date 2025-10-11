@@ -229,7 +229,7 @@ export default function Experience() {
         technology. I easily adapt to new tools and languages, always eager to
         learn and constantly striving to improve.
       </h3>
-      typescriptreact
+
       <Terminal>
         <div className="text-gray-400 mb-3">
           <span className="text-green-400">user@portfolio</span>
