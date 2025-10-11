@@ -6,7 +6,7 @@ export function Navigation() {
   const location = useLocation();
 
   const navigation = [
-    { label: "Home", href: "/index", icon: <HomeIcon className="w-5 h-5" /> },
+    { label: "Home", href: "/", icon: <HomeIcon className="w-5 h-5" /> },
     {
       label: "Experience",
       href: "/experience",
@@ -20,7 +20,7 @@ export function Navigation() {
   ];
 
   return (
-    <aside className="w-64 h-screen pt-10 bg-white/5 backdrop-blur-lg border-r border-main-200/50 p-6">
+    <aside className="cursor-none w-72 h-screen pt-10 bg-white/5 backdrop-blur-lg border-r border-main-200/10 p-6">
       <nav>
         <ul className="flex flex-col gap-1">
           {navigation.map((n, index) => {

@@ -3,7 +3,7 @@ import { Link, type LinkProps } from "react-router-dom";
 import type { ReactNode } from "react";
 
 const navLinkVariants = cva(
-  "group relative px-4 py-3 gap-3 rounded-xl flex items-center transition-all duration-200 w-full",
+  "group relative px-4 py-3 gap-3 cursor-none rounded-xl flex items-center transition-all duration-200 w-full",
   {
     variants: {
       active: {
