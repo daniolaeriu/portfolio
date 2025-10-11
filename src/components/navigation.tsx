@@ -20,7 +20,7 @@ export function Navigation() {
   ];
 
   return (
-    <aside className="w-64 h-screen pt-10 bg-white/10 backdrop-blur-lg border-r border-main-200/50 p-6">
+    <aside className="w-64 h-screen pt-10 bg-white/5 backdrop-blur-lg border-r border-main-200/50 p-6">
       <nav>
         <ul className="flex flex-col gap-1">
           {navigation.map((n, index) => {

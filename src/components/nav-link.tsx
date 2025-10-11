@@ -8,7 +8,7 @@ const navLinkVariants = cva(
     variants: {
       active: {
         true: "bg-gradient-to-r from-main-500 to-main-600 text-white shadow-lg shadow-main-500/30",
-        false: "text-gray-700 hover:bg-main-50 hover:text-main-600",
+        false: "text-white hover:bg-main-50 hover:text-main-600",
       },
     },
     defaultVariants: {
