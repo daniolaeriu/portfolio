@@ -20,9 +20,9 @@ export function Navigation() {
   ];
 
   return (
-    <aside className="cursor-none w-72 h-screen pt-10 bg-white/5 backdrop-blur-lg border-r border-main-200/10 p-6">
+    <aside className="cursor-none fixed min-w-72 h-screen pt-10 bg-white/5 backdrop-blur-lg border-r border-main-200/10 p-6">
       <nav>
-        <ul className="flex flex-col gap-1">
+        <ul className="flex flex-col mt-4 gap-1">
           {navigation.map((n, index) => {
             const isActive = location.pathname === n.href;
             return (

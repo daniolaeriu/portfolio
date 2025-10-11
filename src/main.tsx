@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { Hero } from "@components/hero";
 import "./index.css";
+import Experience from "./components/experience";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "experience",
-        element: <div>About Page</div>,
+        element: <Experience />,
       },
       {
         path: "resume",
