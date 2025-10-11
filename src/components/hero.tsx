@@ -7,7 +7,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
   const randomNames = ["Visitor", "Stranger", "Recruiter", "Developer"];
-  const [displayName, setDisplayName] = useState("");
+  const [displayName] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * randomNames.length);
+    return randomNames[randomIndex];
+  });
 
   const heroRef = useRef(null);
   const titleRef = useRef(null);
@@ -15,16 +18,76 @@ export function Hero() {
   const paragraph1Ref = useRef(null);
   const paragraph2Ref = useRef(null);
   const cubeRef = useRef(null);
-  const starsRef = useRef(null);
+  const starsRef = useRef<HTMLCanvasElement>(null);
   const terminalRef = useRef(null);
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * randomNames.length);
-    setDisplayName(randomNames[randomIndex]);
-  }, []);
+    const canvas = starsRef.current;
+    if (!canvas) return;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setCanvasSize();
+
+    const stars = Array.from({ length: 400 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.8 + 0.2,
+      twinkleSpeed: Math.random() * 0.02 + 0.01,
+      twinkleOffset: Math.random() * Math.PI * 2,
+    }));
+
+    let frame = 0;
+    let animationId: number;
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      stars.forEach((star) => {
+        const twinkle = Math.sin(
+          frame * star.twinkleSpeed + star.twinkleOffset
+        );
+        const finalOpacity = star.opacity * (0.5 + twinkle * 0.5);
+
+        ctx.fillStyle = `rgba(255, 255, 255, ${finalOpacity})`;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      frame++;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    const handleResize = () => {
+      setCanvasSize();
+      // Regenerate star positions on resize
+      stars.forEach((star) => {
+        star.x = Math.random() * canvas.width;
+        star.y = Math.random() * canvas.height;
+      });
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+      const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      gsap.to(cubeRef.current, {
+        x: xPos,
+        y: yPos,
+        duration: 1,
+        ease: "power2.out",
+      });
+    };
+
+    // GSAP animations
+    const gsapCtx = gsap.context(() => {
       gsap.set(
         [
           titleRef.current,
@@ -33,10 +96,7 @@ export function Hero() {
           paragraph2Ref.current,
           terminalRef.current,
         ],
-        {
-          opacity: 0,
-          y: 30,
-        }
+        { opacity: 0, y: 30 }
       );
 
       gsap.set(cubeRef.current, {
@@ -47,76 +107,23 @@ export function Hero() {
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.to(
-        starsRef.current,
-        {
-          opacity: 1,
-          duration: 1,
-        },
-        0
-      );
-
-      tl.to(
-        cubeRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 1.5,
-          ease: "back.out(1.2)",
-        },
-        0.3
-      );
-
-      tl.to(
-        titleRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        0.6
-      );
-
-      tl.to(
-        nameRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        0.8
-      );
-
-      tl.to(
-        paragraph1Ref.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        1.0
-      );
-
-      tl.to(
-        paragraph2Ref.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        1.2
-      );
-
-      tl.to(
-        terminalRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        1.4
-      );
+      tl.to(starsRef.current, { opacity: 1, duration: 1 }, 0)
+        .to(
+          cubeRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 1.5,
+            ease: "back.out(1.2)",
+          },
+          0.3
+        )
+        .to(titleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.6)
+        .to(nameRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.8)
+        .to(paragraph1Ref.current, { opacity: 1, y: 0, duration: 0.8 }, 1.0)
+        .to(paragraph2Ref.current, { opacity: 1, y: 0, duration: 0.8 }, 1.2)
+        .to(terminalRef.current, { opacity: 1, y: 0, duration: 0.8 }, 1.4);
 
       gsap.to(cubeRef.current, {
         rotation: 360,
@@ -156,25 +163,16 @@ export function Hero() {
       });
     }, heroRef);
 
-    return () => ctx.revert();
-  }, [displayName]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: { clientX: number; clientY: number }) => {
-      const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 0.5) * 20;
-      const yPos = (clientY / window.innerHeight - 0.5) * 20;
-
-      gsap.to(cubeRef.current, {
-        x: xPos,
-        y: yPos,
-        duration: 1,
-        ease: "power2.out",
-      });
-    };
-
+    animate();
+    window.addEventListener("resize", handleResize);
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      gsapCtx.revert();
+    };
   }, []);
 
   return (
@@ -184,27 +182,7 @@ export function Hero() {
         ref={heroRef}
         className="relative h-screen w-full flex items-center overflow-hidden"
       >
-        <div
-          ref={starsRef}
-          className="stars-container absolute inset-0 z-0 opacity-0"
-        >
-          {[...Array(400)].map((_, i) => (
-            <div
-              key={i}
-              className="star absolute bg-white rounded-full"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${Math.random() * 2 + 1}px`,
-                height: `${Math.random() * 2 + 1}px`,
-                opacity: Math.random() * 0.8 + 0.2,
-                animation: `twinkle ${Math.random() * 3 + 2}s infinite ${
-                  Math.random() * 3
-                }s`,
-              }}
-            />
-          ))}
-        </div>
+        <canvas ref={starsRef} className="absolute inset-0 z-0 opacity-0" />
 
         <div className="absolute top-[10%] -right-[20%] w-2/4 z-10">
           <div className="absolute inset-0 rounded-full blur-xl bg-cyan-400 opacity-0 scale-50" />
@@ -226,7 +204,7 @@ export function Hero() {
                 ref={nameRef}
                 className="inline-block font-bold text-cyan-400"
               >
-                {displayName || "friend"}
+                {displayName}
               </span>
               <span ref={nameRef} className="inline-block">
                 .
@@ -276,10 +254,6 @@ export function Hero() {
         <style>{`
           * {
             cursor: none !important;
-          }
-          @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
           }
         `}</style>
       </div>
