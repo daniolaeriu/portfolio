@@ -1,10 +1,20 @@
+import { useState, useEffect } from "react";
 import "../assets/spin.css";
 import "../assets/stars.css";
 import { Container } from "./container";
 
 export function Hero() {
+  const randomNames = ["Visitor", "Stranger", "Recruiter", "Developer"];
+
+  const [displayName, setDisplayName] = useState("");
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * randomNames.length);
+    setDisplayName(randomNames[randomIndex]);
+  }, []);
+
   return (
-    <div className="relative h-screen w-full flex items-center overflow-hidden bg-gradient-to-tr from-main-50 via-main-100 to-main-400">
+    <div className="relative h-screen w-full flex items-center overflow-hidden">
       <div className="stars-container h-80 absolute inset-0 z-0">
         {[...Array(400)].map((_, i) => (
           <div
@@ -21,33 +31,42 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="absolute -top-[60%] left-1/2 -translate-x-1/2 w-2/3 z-10">
-        <div className="absolute inset-0 rounded-full blur-xl bg-main-100 opacity-50 scale-100" />
+      <div className="absolute -top-[10%] right-[0%] w-2/4 z-10">
+        <div className="absolute inset-0 rounded-full blur-xl bg-main-100 opacity-50 scale-50" />
 
         <img
           className="relative w-full spin-animation"
-          src="planet.png"
+          src="cube.png"
           alt="Spinning planet"
         />
       </div>
 
       <Container>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl mt-72 font-bold font-mono text-left leading-tight text-gray-900">
-          Hey there, <span className="font-bold text-main-400">curious</span>.
-        </h1>
-        <p className="text-xl md:text-2xl mt-8 text-gray-700 leading-relaxed font-light">
-          I'm <span className="font-bold text-main-400">Dani Olaeriu</span>, a
-          software developer specializing in{" "}
-          <span className="font-bold text-main-400">frontend development</span>{" "}
-          with backend capabilities.
-        </p>
-        <p className="text-lg md:text-xl mt-4 text-gray-600 leading-relaxed">
-          With nearly{" "}
-          <span className="font-bold text-main-400">
-            4 years of industry experience
-          </span>
-          , I craft beautiful, performant web experiences that users love.
-        </p>
+        <div className="col-span-ful z-20 max-w-4xl">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-mono text-left leading-tight text-gray-900">
+            Hey there, <br />
+            <span className="font-bold text-main-400">
+              {displayName || "friend"}
+            </span>
+            .
+          </h1>
+          <p className="text-xl md:text-2xl mt-8 text-gray-700 leading-relaxed font-light">
+            I'm <span className="font-bold text-main-400">Dani Olaeriu</span>, a
+            software developer who turns ideas into elegant digital experiences.
+            I specialize in{" "}
+            <span className="font-bold">frontend development</span> with the
+            backend skills to bring the full picture together.
+          </p>
+          <p className="text-lg md:text-xl mt-4 text-gray-600 leading-relaxed">
+            With{" "}
+            <span className="font-bold text-main-400">
+              4 years of professional experience
+            </span>
+            , I build web applications that don't just work—they delight. Every
+            pixel, every interaction, every line of code is crafted with
+            purpose.
+          </p>
+        </div>
       </Container>
     </div>
   );
