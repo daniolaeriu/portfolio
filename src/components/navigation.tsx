@@ -14,15 +14,15 @@ export function Navigation() {
     },
     {
       label: "Resume",
-      href: "/resume",
+      href: "https://drive.google.com/file/d/1HJnuWVqA5jNPIzvM-PZpnqATbT0De4gf/view?usp=sharing",
       icon: <FileTextIcon className="w-5 h-5" />,
     },
   ];
 
   return (
-    <aside className="cursor-none fixed md:min-w-72 w-full md:w-auto md:h-screen  md:pt-10 pt-4 bg-white/5 backdrop-blur-lg md:border-r border-b md:border-b-0 border-main-200/10 p-6 md:p-6 p-4 z-50">
+    <aside className="cursor-none fixed w-full xl:w-auto xl:min-w-72 xl:h-screen pt-4 xl:pt-10 bg-white/5 backdrop-blur-lg border-b xl:border-b-0 xl:border-r border-main-200/10 p-6 z-50">
       <nav>
-        <ul className="flex md:flex-col flex-row mt-4 md:mt-4 gap-1 md:gap-1  justify-center md:justify-start">
+        <ul className="flex flex-row xl:flex-col mt-4 gap-1 justify-center xl:justify-start">
           {navigation.map((n, index) => {
             const isActive = location.pathname === n.href;
             return (
