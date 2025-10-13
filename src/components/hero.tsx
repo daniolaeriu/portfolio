@@ -37,7 +37,6 @@ export function Hero() {
     };
 
     const gsapCtx = gsap.context(() => {
-      // Set initial states
       gsap.set(
         [
           titleRef.current,
@@ -55,7 +54,6 @@ export function Hero() {
         rotation: -45,
       });
 
-      // Entry timeline
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.to(

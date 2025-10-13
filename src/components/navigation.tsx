@@ -1,11 +1,19 @@
 import { BackpackIcon, FileTextIcon, HomeIcon } from "@radix-ui/react-icons";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "./nav-link";
+import type { ReactNode } from "react";
+
+interface Link {
+  label: string;
+  href: string;
+  icon: ReactNode;
+  external?: boolean;
+}
 
 export function Navigation() {
   const location = useLocation();
 
-  const navigation = [
+  const navigation: Link[] = [
     { label: "Home", href: "/", icon: <HomeIcon className="w-5 h-5" /> },
     {
       label: "Experience",
@@ -16,6 +24,7 @@ export function Navigation() {
       label: "Resume",
       href: "https://drive.google.com/file/d/1HJnuWVqA5jNPIzvM-PZpnqATbT0De4gf/view?usp=sharing",
       icon: <FileTextIcon className="w-5 h-5" />,
+      external: true,
     },
   ];
 
@@ -28,6 +37,7 @@ export function Navigation() {
             return (
               <li key={index}>
                 <NavLink
+                  target={n.external ? "_blank" : ""}
                   className="p-4"
                   to={n.href}
                   active={isActive}
