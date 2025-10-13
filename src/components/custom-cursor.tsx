@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cx } from "class-variance-authority";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function CustomCursor() {
+export function CustomCursor({ className }: { className?: string }) {
   const cursorRef = useRef(null);
   const followerRef = useRef(null);
 
@@ -85,12 +86,18 @@ export function CustomCursor() {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-cyan-400 rounded-full pointer-events-none z-[9999] mix-blend-difference"
+        className={cx(
+          className,
+          "fixed top-0 left-0 w-2 h-2 bg-cyan-400 rounded-full pointer-events-none z-[9999] mix-blend-difference"
+        )}
         style={{ transform: "translate(-50%, -50%)" }}
       />
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+        className={cx(
+          className,
+          "fixed top-0 left-0 w-8 h-8 border-2 border-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+        )}
         style={{ transform: "translate(-50%, -50%)" }}
       />
     </>
