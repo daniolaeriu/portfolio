@@ -22,6 +22,8 @@ export function Hero() {
   const terminalRef = useRef(null);
   const terminal2Ref = useRef(null);
 
+  const svgLineRef = useRef(null);
+
   useEffect(() => {
     const handleMouseMove = (e: { clientX: number; clientY: number }) => {
       const xPos = (e.clientX / window.innerWidth - 0.5) * 200;
@@ -73,7 +75,26 @@ export function Hero() {
         .to(paragraph2Ref.current, { opacity: 1, y: 0, duration: 0.8 }, 1.2)
         .to(terminal2Ref.current, { opacity: 1, y: 0, duration: 0.8 }, 1.4);
 
-      // Continuous animations
+      if (svgLineRef.current) {
+        // @ts-ignore
+
+        const path = svgLineRef.current.querySelector("path");
+        if (path) {
+          const length = path.getTotalLength();
+          gsap.set(path, {
+            strokeDasharray: length,
+            strokeDashoffset: length,
+          });
+
+          gsap.to(path, {
+            strokeDashoffset: 0,
+            duration: 1.5,
+            ease: "power2.inOut",
+            delay: 1.0,
+          });
+        }
+      }
+
       gsap.to(cubeRef.current, {
         rotation: "+=360",
         duration: 30,
@@ -95,7 +116,6 @@ export function Hero() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
 
-      // Exit animations
       gsap.to(containerRef.current, {
         opacity: 0,
         y: -20,
@@ -126,15 +146,55 @@ export function Hero() {
                 Hey there,
               </span>
               <br />
-              <span
-                ref={nameRef}
-                className="inline-block font-bold text-main-400"
-              >
-                {displayName}
-              </span>
-              <span ref={nameRef} className="inline-block">
-                .
-              </span>
+              <div className="relative inline-block">
+                <span
+                  ref={nameRef}
+                  className="inline-block font-bold text-main-400"
+                >
+                  {displayName}
+                </span>
+                <span ref={nameRef} className="inline-block">
+                  .
+                </span>
+                <svg
+                  ref={svgLineRef}
+                  className="absolute left-0 -bottom-2 w-full"
+                  height="12"
+                  viewBox="0 0 200 12"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 6 Q50 2, 100 6 T200 6"
+                    fill="none"
+                    stroke="url(#gradient)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="gradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop
+                        offset="0%"
+                        style={{ stopColor: "#22d3ee", stopOpacity: 1 }}
+                      />
+                      <stop
+                        offset="50%"
+                        style={{ stopColor: "#a855f7", stopOpacity: 1 }}
+                      />
+                      <stop
+                        offset="100%"
+                        style={{ stopColor: "#ec4899", stopOpacity: 1 }}
+                      />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
             </h1>
 
             <div ref={terminalRef}>
@@ -144,8 +204,11 @@ export function Hero() {
                   build-awesome-project
                 </div>
                 <div className="text-gray-400 ml-2">
-                  <span className="text-blue-400">&gt;</span> building amazing
-                  things...
+                  <span className="text-blue-400">&gt;</span>{" "}
+                  <span style={{ perspective: "1000px" }}>building</span>{" "}
+                  <span style={{ perspective: "1000px" }}>
+                    amazing things...
+                  </span>
                 </div>
                 <div className="text-green-400 ml-2">
                   <span className="text-blue-400">✓</span> Build completed
