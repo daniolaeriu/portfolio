@@ -67,7 +67,7 @@ export function Layout({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <section className="min-h-screen text-white overflow-x-hidden cursor-none flex w-full bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 relative">
+    <section className="min-h-screen cursor-none text-white overflow-x-hidden cursor-none flex w-full bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 relative">
       <canvas ref={starsRef} className="fixed inset-0 z-0" />
       <CustomCursor />
       {children}

@@ -3,11 +3,11 @@ import { Link, type LinkProps } from "react-router-dom";
 import type { ReactNode } from "react";
 
 const navLinkVariants = cva(
-  "group relative px-4 py-3 gap-3 cursor-none rounded-xl flex items-center transition-all duration-200 w-full",
+  "group relative px-3 py-3 gap-1 lg:gap-3 cursor-none rounded-xl flex items-center transition-all duration-200 w-full",
   {
     variants: {
       active: {
-        true: "bg-gradient-to-r from-main-500 to-main-600 text-white shadow-lg shadow-main-500/30",
+        true: "bg-gradient-to-r  from-main-500 to-main-600 text-white shadow-lg shadow-main-500/30",
         false: "text-white hover:bg-main-50 hover:text-main-600",
       },
     },
@@ -40,7 +40,7 @@ export function NavLink({
       )}
       <span className="font-medium">{children}</span>
       {active && (
-        <span className="absolute right-4 w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+        <span className="absolute hidden lg:block right-4 w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
       )}
     </Link>
   );
