@@ -194,6 +194,16 @@ export default function Experience() {
                 <span className="text-green-300">"Git"</span>],
               </div>
               <div className="ml-4">
+                <span className="text-blue-400">"mobile"</span>: [
+                <span className="text-green-300">"Expo"</span>,{" "}
+                <span className="text-green-300">"React Native"</span>],
+              </div>
+              <div className="ml-4">
+                <span className="text-blue-400">"tools"</span>: [
+                <span className="text-green-300">"Strapi"</span>,{" "}
+                <span className="text-green-300">"Stripe"</span>],
+              </div>
+              <div className="ml-4">
                 <span className="text-blue-400">"specialties"</span>: [
                 <span className="text-green-300">
                   "Web Applications Development"
