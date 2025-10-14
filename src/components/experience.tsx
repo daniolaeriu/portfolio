@@ -201,7 +201,8 @@ export default function Experience() {
               <div className="ml-4">
                 <span className="text-blue-400">"tools"</span>: [
                 <span className="text-green-300">"Strapi"</span>,{" "}
-                <span className="text-green-300">"Stripe"</span>],
+                <span className="text-green-300">"Stripe"</span>,{" "}
+                <span className="text-green-300">"Vite"</span>],
               </div>
               <div className="ml-4">
                 <span className="text-blue-400">"specialties"</span>: [
