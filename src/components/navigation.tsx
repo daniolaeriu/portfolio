@@ -22,7 +22,7 @@ export function Navigation() {
     },
     {
       label: "Resume",
-      href: "https://drive.google.com/file/d/1HJnuWVqA5jNPIzvM-PZpnqATbT0De4gf/view?usp=sharing",
+      href: "https://drive.google.com/file/d/1HlfbvHXkCrCm1XUDlybaR9x-G_dE5Sog/view?usp=sharing",
       icon: <FileTextIcon className="w-5 h-5" />,
       external: true,
     },
