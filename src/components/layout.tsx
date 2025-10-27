@@ -1,7 +1,6 @@
 import { useEffect, useRef, type PropsWithChildren } from "react";
 import { CustomCursor } from "@/components/custom-cursor";
 
-import LiquidEther from "./LiquidEther";
 import Prism from "./Prism";
 
 export function Layout({ children }: PropsWithChildren) {
@@ -82,15 +81,6 @@ export function Layout({ children }: PropsWithChildren) {
 }
 
 function BackgroundEffects() {
-  const liquidEtherConfig = {
-    colors: ["#b3e5fc", "#4fc3f7", "#03a9f4"],
-    mouseForce: 10,
-    cursorSize: 20,
-    iterationsViscous: 32,
-    iterationsPoisson: 32,
-    resolution: 0.1,
-  };
-
   return (
     <>
       <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
@@ -105,9 +95,6 @@ function BackgroundEffects() {
           noise={0}
           glow={2}
         />
-      </div>
-      <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
-        <LiquidEther {...liquidEtherConfig} />
       </div>
     </>
   );
