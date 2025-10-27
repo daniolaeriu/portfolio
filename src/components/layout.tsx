@@ -85,11 +85,11 @@ export function Layout({ children }: PropsWithChildren) {
 function BackgroundEffects() {
   const liquidEtherConfig = {
     colors: ["#b3e5fc", "#4fc3f7", "#03a9f4"],
-    mouseForce: 20,
-    cursorSize: 100,
+    mouseForce: 10,
+    cursorSize: 20,
     iterationsViscous: 32,
     iterationsPoisson: 32,
-    resolution: 0.2,
+    resolution: 0.1,
   };
 
   return (
