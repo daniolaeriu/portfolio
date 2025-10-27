@@ -201,13 +201,13 @@ export function Hero() {
             </h1>
 
             <TextType
-              className="text-xl mt-12 font-semibold"
+              className="text-2xl mt-12 font-semibold"
               text={[
-                "Frontend Developer with 4 years of experience crafting scalable web applications.",
-                "Specialized in building performant, accessible, and user-centric interfaces.",
-                "Architect of clean, maintainable code following industry best practices.",
-                "Transforming complex requirements into intuitive digital experiences.",
-                "Continuously evolving expertise in modern frontend technologies and methodologies.",
+                "Frontend Developer with 4 years of experience.",
+                "Passionate about building modern and responsive interfaces.",
+                "Committed to clean code and best practices.",
+                "Turning ideas into engaging digital experiences.",
+                "Always learning and improving in the world of frontend.",
               ]}
               typingSpeed={40}
               pauseDuration={1500}

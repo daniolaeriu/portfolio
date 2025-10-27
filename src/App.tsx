@@ -8,8 +8,8 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Layout>
-        <Outlet />
         <Navigation />
+        <Outlet />
       </Layout>
     </ThemeProvider>
   );

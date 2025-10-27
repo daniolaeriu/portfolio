@@ -70,9 +70,7 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <section className="relative flex min-h-screen w-full min-w-lg cursor-none overflow-x-hidden bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 text-white">
       <BackgroundEffects />
-
       <canvas ref={starsRef} className="fixed inset-0 z-0" />
-
       <CustomCursor className="hidden md:block" />
 
       {children}
