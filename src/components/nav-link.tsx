@@ -3,7 +3,7 @@ import { Link, type LinkProps } from "react-router-dom";
 import type { ReactNode } from "react";
 
 const navLinkVariants = cva(
-  "group relative py-3 cursor-none rounded-xl flex items-center justify-center transition-all duration-200 w-full",
+  "group relative py-3 px-4 cursor-none rounded-xl flex items-center transition-all duration-200 w-full min-h-[48px]",
   {
     variants: {
       active: {
@@ -22,6 +22,7 @@ export interface NavLinkProps
     VariantProps<typeof navLinkVariants> {
   children: ReactNode;
   icon?: ReactNode;
+  showLabelOnMobile?: boolean;
 }
 
 export function NavLink({
@@ -29,16 +30,31 @@ export function NavLink({
   icon,
   active,
   className,
+  showLabelOnMobile = false,
   ...props
 }: NavLinkProps) {
   return (
     <Link className={navLinkVariants({ active, className })} {...props}>
-      {icon && (
-        <span className="transition-transform duration-200 group-hover:scale-110">
-          {icon}
+      <div
+        className={`flex items-center ${
+          icon && !showLabelOnMobile
+            ? "sm:w-auto w-full justify-center"
+            : "w-full"
+        }`}
+      >
+        {icon && (
+          <span className="transition-transform duration-200 group-hover:scale-110 flex-shrink-0">
+            {icon}
+          </span>
+        )}
+        <span
+          className={`font-medium ${
+            icon && !showLabelOnMobile ? "hidden sm:inline" : ""
+          }`}
+        >
+          {children}
         </span>
-      )}
-      <span className="font-medium">{children}</span>
+      </div>
     </Link>
   );
 }

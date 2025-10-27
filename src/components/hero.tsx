@@ -9,7 +9,7 @@ import TextType from "./type-text";
 gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
-  const randomNames = ["Visitor", "Stranger", "Recruiter", "Developer"];
+  const randomNames = ["Visitor", "Stranger", "Developer"];
   const [displayName] = useState(() => {
     const randomIndex = Math.floor(Math.random() * randomNames.length);
     return randomNames[randomIndex];

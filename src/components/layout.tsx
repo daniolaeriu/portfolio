@@ -2,6 +2,7 @@ import { useEffect, useRef, type PropsWithChildren } from "react";
 import { CustomCursor } from "@/components/custom-cursor";
 
 import Prism from "./Prism";
+import Galaxy from "./Galaxy";
 
 export function Layout({ children }: PropsWithChildren) {
   const starsRef = useRef<HTMLCanvasElement>(null);
@@ -70,7 +71,17 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <section className="relative flex min-h-screen w-full min-w-lg cursor-none overflow-x-hidden bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 text-white">
       <BackgroundEffects />
-      <canvas ref={starsRef} className="fixed inset-0 z-0" />
+      <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
+        <Galaxy
+          mouseRepulsion={true}
+          mouseInteraction={true}
+          speed={0.4}
+          density={0.2}
+          glowIntensity={0.2}
+          saturation={0.5}
+          hueShift={200}
+        />
+      </div>
       <CustomCursor className="hidden md:block" />
 
       {children}
@@ -83,15 +94,15 @@ function BackgroundEffects() {
     <>
       <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
         <Prism
-          animationType="3drotate"
-          timeScale={0.5}
-          height={10}
-          baseWidth={4.5}
-          scale={1}
+          animationType="rotate"
+          timeScale={0.2}
+          height={4}
+          baseWidth={3}
+          scale={2}
           hueShift={0}
           colorFrequency={1}
           noise={0}
-          glow={2}
+          glow={1}
         />
       </div>
     </>
