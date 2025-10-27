@@ -3,7 +3,6 @@ import { CustomCursor } from "@/components/custom-cursor";
 
 import LiquidEther from "./LiquidEther";
 import Prism from "./Prism";
-import { StaggeredMenu } from "./StaggeredMenu";
 
 export function Layout({ children }: PropsWithChildren) {
   const starsRef = useRef<HTMLCanvasElement>(null);
