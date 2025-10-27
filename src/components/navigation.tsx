@@ -29,7 +29,7 @@ export function Navigation() {
   ];
 
   return (
-    <aside className="cursor-none fixed w-full xl:w-auto xl:min-w-72 xl:h-screen pt-4 xl:pt-10 bg-white/5 backdrop-blur-lg border-b xl:border-b-0 xl:border-r border-main-200/10 p-6 z-50">
+    <aside className="cursor-none z-[100] fixed w-full xl:w-auto xl:min-w-72 xl:h-screen pt-4 xl:pt-10 bg-white/5 backdrop-blur-lg border-b xl:border-b-0 xl:border-r border-main-200/10 p-6">
       <nav>
         <ul className="flex flex-row xl:flex-col  lg:mt-4 gap-1 justify-center xl:justify-start">
           {navigation.map((n, index) => {

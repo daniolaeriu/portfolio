@@ -1,6 +1,10 @@
 import { useEffect, useRef, type PropsWithChildren } from "react";
 import { CustomCursor } from "@/components/custom-cursor";
 
+import LiquidEther from "./LiquidEther";
+import Prism from "./Prism";
+import { StaggeredMenu } from "./StaggeredMenu";
+
 export function Layout({ children }: PropsWithChildren) {
   const starsRef = useRef<HTMLCanvasElement>(null);
 
@@ -50,7 +54,6 @@ export function Layout({ children }: PropsWithChildren) {
 
     const handleResize = () => {
       setCanvasSize();
-
       stars.forEach((star) => {
         star.x = Math.random() * canvas.width;
         star.y = Math.random() * canvas.height;
@@ -67,10 +70,46 @@ export function Layout({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <section className="min-h-screen min-w-lg text-white overflow-x-hidden cursor-none flex w-full bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 relative">
+    <section className="relative flex min-h-screen w-full min-w-lg cursor-none overflow-x-hidden bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 text-white">
+      <BackgroundEffects />
+
       <canvas ref={starsRef} className="fixed inset-0 z-0" />
+
       <CustomCursor className="hidden md:block" />
+
       {children}
     </section>
+  );
+}
+
+function BackgroundEffects() {
+  const liquidEtherConfig = {
+    colors: ["#b3e5fc", "#4fc3f7", "#03a9f4"],
+    mouseForce: 20,
+    cursorSize: 100,
+    iterationsViscous: 32,
+    iterationsPoisson: 32,
+    resolution: 0.2,
+  };
+
+  return (
+    <>
+      <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
+        <Prism
+          animationType="3drotate"
+          timeScale={0.5}
+          height={10}
+          baseWidth={4.5}
+          scale={1}
+          hueShift={0}
+          colorFrequency={1}
+          noise={0}
+          glow={2}
+        />
+      </div>
+      <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
+        <LiquidEther {...liquidEtherConfig} />
+      </div>
+    </>
   );
 }

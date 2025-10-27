@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Terminal } from "./terminal";
 import { Container } from "./container";
 
+import TextType from "./type-text";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
@@ -141,7 +143,7 @@ export function Hero() {
 
         <div className="relative z-20">
           <div className="max-w-4xl">
-            <h1 className="text-5xl font-thin md:text-6xl lg:text-7xl font-mono text-left leading-tight text-white">
+            <h1 className="text-5xl font-bold  md:text-6xl lg:text-7xl font-mono text-left leading-tight text-white">
               <span ref={titleRef} className="inline-block">
                 Hey there,
               </span>
@@ -156,9 +158,10 @@ export function Hero() {
                 <span ref={nameRef} className="inline-block">
                   .
                 </span>
+
                 <svg
                   ref={svgLineRef}
-                  className="absolute left-0 -bottom-2 w-full"
+                  className="absolute left-1 -bottom-4 w-full"
                   height="12"
                   viewBox="0 0 200 12"
                   preserveAspectRatio="none"
@@ -197,6 +200,21 @@ export function Hero() {
               </div>
             </h1>
 
+            <TextType
+              className="text-xl mt-12 font-semibold"
+              text={[
+                "Frontend Developer with 4 years of experience crafting scalable web applications.",
+                "Specialized in building performant, accessible, and user-centric interfaces.",
+                "Architect of clean, maintainable code following industry best practices.",
+                "Transforming complex requirements into intuitive digital experiences.",
+                "Continuously evolving expertise in modern frontend technologies and methodologies.",
+              ]}
+              typingSpeed={40}
+              pauseDuration={1500}
+              showCursor={true}
+              cursorCharacter="|"
+            />
+
             <div ref={terminalRef}>
               <Terminal>
                 <div className="text-green-400">
@@ -216,19 +234,6 @@ export function Hero() {
                 </div>
               </Terminal>
             </div>
-
-            <p
-              ref={paragraph2Ref}
-              className="text-lg md:text-xl mt-4 leading-relaxed text-gray-300"
-            >
-              With{" "}
-              <span className="font-bold font-mono text-cyan-400">
-                4 years of professional experience
-              </span>
-              , I build web applications that don't just work, they delight.
-              Every pixel, every interaction, every line of code is crafted with
-              purpose.
-            </p>
 
             <div ref={terminal2Ref}>
               <Terminal>

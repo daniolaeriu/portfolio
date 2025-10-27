@@ -1,14 +1,15 @@
 import { Layout } from "@components/layout";
-import { Navigation } from "@components/navigation";
+
 import { ThemeProvider } from "@components/theme-provider";
 import { Outlet } from "react-router-dom";
+import { Navigation } from "./components/navigation";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Layout>
-        <Navigation />
         <Outlet />
+        <Navigation />
       </Layout>
     </ThemeProvider>
   );
