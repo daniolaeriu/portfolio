@@ -69,7 +69,7 @@ export function Layout({ children }: PropsWithChildren) {
 
   return (
     <section className="relative flex min-h-screen w-full min-w-lg cursor-none overflow-x-hidden bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 text-white">
-      <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
+      <div className="pointer-events-none fixed left-0 top-0 z-0 h-full w-full">
         <Galaxy
           mouseRepulsion={false}
           mouseInteraction={false}
