@@ -2,8 +2,6 @@ import { useEffect, useRef, type PropsWithChildren } from "react";
 import { CustomCursor } from "@/components/custom-cursor";
 
 import Galaxy from "./Galaxy";
-import ColorBends from "./ColorBends";
-import Plasma from "./Plasma";
 
 export function Layout({ children }: PropsWithChildren) {
   const starsRef = useRef<HTMLCanvasElement>(null);
@@ -71,38 +69,20 @@ export function Layout({ children }: PropsWithChildren) {
 
   return (
     <section className="relative flex min-h-screen w-full min-w-lg cursor-none overflow-x-hidden bg-gradient-to-tl from-slate-900/90 via-slate-900 to-slate-950 text-white">
-      <BackgroundEffects />
       <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
         <Galaxy
-          mouseRepulsion={true}
-          mouseInteraction={true}
+          mouseRepulsion={false}
+          mouseInteraction={false}
           speed={0.4}
-          density={0.5}
-          glowIntensity={0.2}
-          saturation={0.5}
-          hueShift={200}
+          density={0.8}
+          glowIntensity={0.3}
+          saturation={0.2}
+          hueShift={10}
         />
       </div>
       <CustomCursor className="hidden md:block" />
 
       {children}
     </section>
-  );
-}
-
-function BackgroundEffects() {
-  return (
-    <>
-      <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
-        <Plasma
-          color="#03a9f4"
-          speed={0.6}
-          direction="forward"
-          scale={1.1}
-          opacity={0.8}
-          mouseInteractive={true}
-        />
-      </div>
-    </>
   );
 }
