@@ -1,8 +1,9 @@
 import { useEffect, useRef, type PropsWithChildren } from "react";
 import { CustomCursor } from "@/components/custom-cursor";
 
-import Prism from "./Prism";
 import Galaxy from "./Galaxy";
+import ColorBends from "./ColorBends";
+import Plasma from "./Plasma";
 
 export function Layout({ children }: PropsWithChildren) {
   const starsRef = useRef<HTMLCanvasElement>(null);
@@ -76,7 +77,7 @@ export function Layout({ children }: PropsWithChildren) {
           mouseRepulsion={true}
           mouseInteraction={true}
           speed={0.4}
-          density={0.2}
+          density={0.5}
           glowIntensity={0.2}
           saturation={0.5}
           hueShift={200}
@@ -93,16 +94,13 @@ function BackgroundEffects() {
   return (
     <>
       <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full">
-        <Prism
-          animationType="rotate"
-          timeScale={0.2}
-          height={4}
-          baseWidth={3}
-          scale={2}
-          hueShift={0}
-          colorFrequency={1}
-          noise={0}
-          glow={1}
+        <Plasma
+          color="#03a9f4"
+          speed={0.6}
+          direction="forward"
+          scale={1.1}
+          opacity={0.8}
+          mouseInteractive={true}
         />
       </div>
     </>
